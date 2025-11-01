@@ -13,8 +13,4 @@ jobs:
         env:
           BOT_URL: ${{ secrets.BOT_URL }}
         run: |
-          if [ -z "$BOT_URL" ]; then
-            echo "ERROR: BOT_URL secret is empty"
-            exit 1
-          fi
-          curl -fsS --max-time 10 "$BOT_URL" || echo "Ping failed (ignored)"
+          curl -L --max-time 10 "$BOT_URL" || echo "Ping failed but continuing"
